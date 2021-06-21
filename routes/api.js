@@ -34,6 +34,7 @@ module.exports = function (app) {
       let isValidInCol = solver.checkColPlacement(puzzle, coordinate[0], coordinate[1], value);
       let isValidInRegion = solver.checkRegionPlacement(puzzle, coordinate[0], coordinate[1], value);
 
+      // Response:
       let response = {
         valid: isValidInRow && isValidInCol && isValidInRegion
       };
@@ -45,11 +46,6 @@ module.exports = function (app) {
         if(!isValidInRegion) response.conflict.push('region');
       }
       res.json(response);
-      console.log(coordinate);
-      console.log("checker: ", solver.validate(puzzle));
-      console.log("row: ", solver.checkRowPlacement(puzzle, coordinate[0], coordinate[1]));
-      console.log("col: ", solver.checkColPlacement(puzzle, coordinate[0], coordinate[1]))
-      console.log("region: ", solver.checkRegionPlacement(puzzle, coordinate[0], coordinate[1], value))
     });
     
   app.route('/api/solve')
