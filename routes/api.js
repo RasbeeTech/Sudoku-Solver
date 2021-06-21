@@ -12,17 +12,18 @@ module.exports = function (app) {
       let { puzzle } = req.body;
       let { coordinate } = req.body;
       let { value } = req.body;
-      coordinate = coordinate.split("");
 
       // Check for valid puzzle.
-      if(!puzzle) return res.json({error: 'Required field missing'});
+      if(!puzzle || !coordinate || !value) return res.json({error: 'Required field(s) missing'});
       if(puzzle.length != 81) return res.json({ error: 'Expected puzzle to be 81 characters long' });
       if(solver.validate(puzzle)) return res.json({error: 'Invalid characters in puzzle'});
+
+      coordinate = coordinate.split("");
 
       if( !/[a-iA-I]/.test(coordinate[0])|| !/^[1-9]*$/.test(coordinate[1]) || coordinate.length > 2){
         return res.json({error: 'Invalid coordinate'});
       }
-      if (Number(value) > 9 || Number(value) < 1){
+      if (!/^[1-9]*$/.test(value)){
         return res.json({error: 'Invalid value'});
       }
 

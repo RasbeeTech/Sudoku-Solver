@@ -156,7 +156,7 @@ suite('Functional Tests', () => {
                 .end((err, res) => {
                     assert.equal(res.status, 200);
                     assert.property(res.body, 'error', 'Should respond with an error if puzzle is missing');
-                    assert.equal(res.body.error, 'Required field missing', 'Should alert describe reason for error')
+                    assert.equal(res.body.error, 'Required field(s) missing', 'Should alert describe reason for error')
                 });
         });
         test('11. Check a puzzle placement with invalid characters', () => {
