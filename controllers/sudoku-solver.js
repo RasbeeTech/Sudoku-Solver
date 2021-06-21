@@ -119,7 +119,6 @@ class SudokuSolver {
       
       puzzleString = newPuzzleString;
     }
-    console.log(puzzleString);
     return puzzleString;
   }
 }
